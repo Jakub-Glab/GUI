@@ -38,7 +38,10 @@
         .header {
             background-color: #F1F1F1;
             text-align: center;
-            padding: 20px;
+            padding: 5px;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 7px #999;
             font-size: 30px;
         }
         .column {
@@ -49,6 +52,9 @@
             content: "";
             display: table;
             clear: both;
+        }
+        .space{
+            margin-left: 45px
         }
         #image {
             display: none;
@@ -80,7 +86,8 @@
         <button class="button" id="flexion" onclick="flexion()" class="button_def">Flexion</button><br><br>
         <button class="button" id="extension" onclick="extension()" class="button_def">Extension</button>
         <button class="button" id="pinch2" onclick="pinch2()" class="button_def">Pinch index</button><br><br>
-        <button class="button" id="pinch3" onclick="pinch3()" class="button_def">Pinch middle</button><br><br>
+        <div class="space">
+        <button class="button" id="pinch3" onclick="pinch3()" class="button_def">Pinch middle</button><br><br></div>
         <button class="button" id="pinch4" onclick="pinch4()" class="button_def">Pinch ring</button>
         <button class="button" id="pinch5" onclick="pinch5()" class="button_def">Pinch pinky</button>
 
@@ -204,10 +211,6 @@
         document.getElementById("pinch4").style.backgroundColor = "";
         document.getElementById("pinch5").style.backgroundColor = "green";
     }
-    
-    
-    
-    
     </script>
 </body>
 </html>
