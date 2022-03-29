@@ -1,0 +1,213 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>GUI</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        @font-face {
+            font-family: "SQRS711L";
+            src: url(SQRS711L.tff);
+        }
+        body {
+            background-color: rgb(175, 175, 175);
+            font-family: "SQRS711L", sans-serif;
+            color:black
+        } 
+        .button {
+            display: inline-block;
+            padding: 12px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #c7c7c7;
+            border: none;
+            border-radius: 9px;
+            box-shadow: 0 5px #999;
+            margin-right: 4px;
+        }
+        .button:hover {background-color: #3e8e41}
+
+        .button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+        .header {
+            background-color: #F1F1F1;
+            text-align: center;
+            padding: 20px;
+            font-size: 30px;
+        }
+        .column {
+            float: left;
+            width: 50%;
+        }
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        #image {
+            display: none;
+        }
+    </style>
+</head>
+<body> 
+    <div class="header">
+        <h1>GUI</h1>
+    </div>
+    <div class="row">
+        <div class="column">
+            <h2>User modes</h2>
+            <input type="checkbox" id="idle" value="idle" onclick="idle()">Idle<br>
+            <input type="checkbox" id="learn" value="learn" onclick="learn()">Learn<br>
+            <input type="checkbox" id="predict" value="predict" onclick="predict()">Predict<br>
+        </div>
+    <div class="column">
+        <h2>Source Signal</h2>
+        <input type="checkbox" id="EMG" value="EMG" onclick="EMG()">EMG<br>
+        <input type="checkbox" id="MMG" value="MMG" onclick="MMG()">MMG<br><br>
+    </div>
+    </div>
+    <div class="row">
+        <div class="column">
+        <h2>Gestures</h2>
+        <button class="button" id="idle1" onclick="idle1()" class="button_def">Idle</button>
+        <button class="button" id="fist" onclick="fist()" class="button_def">Fist</button>
+        <button class="button" id="flexion" onclick="flexion()" class="button_def">Flexion</button><br><br>
+        <button class="button" id="extension" onclick="extension()" class="button_def">Extension</button>
+        <button class="button" id="pinch2" onclick="pinch2()" class="button_def">Pinch index</button><br><br>
+        <button class="button" id="pinch3" onclick="pinch3()" class="button_def">Pinch middle</button><br><br>
+        <button class="button" id="pinch4" onclick="pinch4()" class="button_def">Pinch ring</button>
+        <button class="button" id="pinch5" onclick="pinch5()" class="button_def">Pinch pinky</button>
+
+
+    </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
+    type="text/javascript"></script>
+    <script>
+    var client = new Paho.MQTT.Client("localhost", 8083, "BrowserClient");
+    client.onMessageArrived = onMessageArrived;
+    
+            // connect the client
+            client.connect({ onSuccess: onConnect });
+    
+            function onConnect() {
+                console.log("Connected");
+            }
+    
+            // called when a message arrives
+            function onMessageArrived(message) {
+    
+            }
+    //inside functions idle(), learn() and predict() add code that prevents the user from checking more than one checkbox at time
+    function idle() {
+        document.getElementById("learn").checked = false;
+        document.getElementById("predict").checked = false; 
+    }
+    function learn() {
+        document.getElementById("idle").checked = false;
+        document.getElementById("predict").checked = false; 
+    }
+    function predict() {
+        document.getElementById("idle").checked = false;
+        document.getElementById("learn").checked = false; 
+    }
+    function EMG() {
+        document.getElementById("MMG").checked = false; 
+    }
+    function MMG() {
+        document.getElementById("EMG").checked = false; 
+    }
+    function idle1() {
+        document.getElementById("idle1").style.backgroundColor = "green";
+        document.getElementById("fist").style.backgroundColor = "";
+        document.getElementById("flexion").style.backgroundColor = "";
+        document.getElementById("extension").style.backgroundColor = "";
+        document.getElementById("pinch2").style.backgroundColor = "";
+        document.getElementById("pinch3").style.backgroundColor = "";
+        document.getElementById("pinch4").style.backgroundColor = "";
+        document.getElementById("pinch5").style.backgroundColor = "";
+    }
+    function fist() {
+        document.getElementById("idle1").style.backgroundColor = "";
+        document.getElementById("fist").style.backgroundColor = "green";
+        document.getElementById("flexion").style.backgroundColor = "";
+        document.getElementById("extension").style.backgroundColor = "";
+        document.getElementById("pinch1").style.backgroundColor = "";
+        document.getElementById("pinch2").style.backgroundColor = "";
+        document.getElementById("pinch3").style.backgroundColor = "";
+        document.getElementById("pinch4").style.backgroundColor = "";
+        document.getElementById("pinch5").style.backgroundColor = "";
+    }
+    function flexion() {
+        document.getElementById("idle1").style.backgroundColor = "";
+        document.getElementById("fist").style.backgroundColor = "";
+        document.getElementById("flexion").style.backgroundColor = "green";
+        document.getElementById("extension").style.backgroundColor = "";
+        document.getElementById("pinch2").style.backgroundColor = "";
+        document.getElementById("pinch3").style.backgroundColor = "";
+        document.getElementById("pinch4").style.backgroundColor = "";
+        document.getElementById("pinch5").style.backgroundColor = "";
+    }
+    function extension() {
+        document.getElementById("idle1").style.backgroundColor = "";
+        document.getElementById("fist").style.backgroundColor = "";
+        document.getElementById("flexion").style.backgroundColor = "";
+        document.getElementById("extension").style.backgroundColor = "green";
+        document.getElementById("pinch2").style.backgroundColor = "";
+        document.getElementById("pinch3").style.backgroundColor = "";
+        document.getElementById("pinch4").style.backgroundColor = "";
+        document.getElementById("pinch5").style.backgroundColor = "";
+    }
+    function pinch2() {
+        document.getElementById("idle1").style.backgroundColor = "";
+        document.getElementById("fist").style.backgroundColor = "";
+        document.getElementById("flexion").style.backgroundColor = "";
+        document.getElementById("extension").style.backgroundColor = "";
+        document.getElementById("pinch2").style.backgroundColor = "green";
+        document.getElementById("pinch3").style.backgroundColor = "";
+        document.getElementById("pinch4").style.backgroundColor = "";
+        document.getElementById("pinch5").style.backgroundColor = "";
+    }
+    function pinch3() {
+        document.getElementById("idle1").style.backgroundColor = "";
+        document.getElementById("fist").style.backgroundColor = "";
+        document.getElementById("flexion").style.backgroundColor = "";
+        document.getElementById("extension").style.backgroundColor = "";
+        document.getElementById("pinch2").style.backgroundColor = "";
+        document.getElementById("pinch3").style.backgroundColor = "green";
+        document.getElementById("pinch4").style.backgroundColor = "";
+        document.getElementById("pinch5").style.backgroundColor = "";
+    }
+    function pinch4() {
+        document.getElementById("idle1").style.backgroundColor = "";
+        document.getElementById("fist").style.backgroundColor = "";
+        document.getElementById("flexion").style.backgroundColor = "";
+        document.getElementById("extension").style.backgroundColor = "";
+        document.getElementById("pinch2").style.backgroundColor = "";
+        document.getElementById("pinch3").style.backgroundColor = "";
+        document.getElementById("pinch4").style.backgroundColor = "green";
+        document.getElementById("pinch5").style.backgroundColor = "";
+    }
+    function pinch5() {
+        document.getElementById("idle1").style.backgroundColor = "";
+        document.getElementById("fist").style.backgroundColor = "";
+        document.getElementById("flexion").style.backgroundColor = "";
+        document.getElementById("extension").style.backgroundColor = "";
+        document.getElementById("pinch2").style.backgroundColor = "";
+        document.getElementById("pinch3").style.backgroundColor = "";
+        document.getElementById("pinch4").style.backgroundColor = "";
+        document.getElementById("pinch5").style.backgroundColor = "green";
+    }
+    
+    
+    
+    
+    </script>
+</body>
+</html>
