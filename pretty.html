@@ -29,7 +29,7 @@
             box-shadow: 0 5px #999;
             margin-right: 4px;
         }
-        .button:hover {background-color: #3e8e41}
+        .button:hover {background-color: #6d996f}
 
         .button:active {
             background-color: #3e8e41;
@@ -82,17 +82,16 @@
     <div class="row">
         <div class="column">
         <h2>Gestures</h2>
-        <button class="button" id="idle1" onclick="idle1()" class="button_def">Idle</button>
-        <button class="button" id="fist" onclick="fist()" class="button_def">Fist</button>
-        <button class="button" id="flexion" onclick="flexion()" class="button_def">Flexion</button><br><br>
-        <button class="button" id="extension" onclick="extension()" class="button_def">Extension</button>
-        <button class="button" id="pinch2" onclick="pinch2()" class="button_def">Pinch index</button><br><br>
+        <button class="button" id="idle1" onclick="idle1()"> Idle </button>
+        <button class="button" id="fist" onclick="fist()"> Fist </button>
+        <button class="button" id="flexion" onclick="flexion()"> Flexion </button><br><br>
+        <button class="button" id="extension" onclick="extension()"> Extension </button>
+        <button class="button" id="pinch2" onclick="pinch2()"> Pinch index </button><br><br>
         <div class="space">
-        <button class="button" id="pinch3" onclick="pinch3()" class="button_def">Pinch middle</button><br><br></div>
-        <button class="button" id="pinch4" onclick="pinch4()" class="button_def">Pinch ring</button>
-        <button class="button" id="pinch5" onclick="pinch5()" class="button_def">Pinch pinky</button>
-
-
+        <button class="button" id="pinch3" onclick="pinch3()"> Pinch middle </button><br><br>
+        </div>
+        <button class="button" id="pinch4" onclick="pinch4()"> Pinch ring </button>
+        <button class="button" id="pinch5" onclick="pinch5()"> Pinch pinky </button>
     </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
@@ -112,7 +111,6 @@
             function onMessageArrived(message) {
     
             }
-    //inside functions idle(), learn() and predict() add code that prevents the user from checking more than one checkbox at time
     function idle() {
         document.getElementById("learn").checked = false;
         document.getElementById("predict").checked = false; 
@@ -146,7 +144,6 @@
         document.getElementById("fist").style.backgroundColor = "green";
         document.getElementById("flexion").style.backgroundColor = "";
         document.getElementById("extension").style.backgroundColor = "";
-        document.getElementById("pinch1").style.backgroundColor = "";
         document.getElementById("pinch2").style.backgroundColor = "";
         document.getElementById("pinch3").style.backgroundColor = "";
         document.getElementById("pinch4").style.backgroundColor = "";
