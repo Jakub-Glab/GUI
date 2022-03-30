@@ -1,0 +1,436 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>GUI</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        @font-face {
+            font-family: "SQRS711L";
+            src: url(SQRS711L.tff);
+        }
+
+        body {
+            background-color: rgb(175, 175, 175);
+            /*font-family: "SQRS711L", sans-serif;*/
+            font-family: "arial", sans-serif;
+            color: black
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #c7c7c7;
+            border: none;
+            border-radius: 9px;
+            box-shadow: 0 5px #999;
+            margin-right: 4px;
+        }
+
+        .button:hover {
+            background-color: #6d996f
+        }
+
+        .button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+
+        .header {
+            background-color: #F1F1F1;
+            text-align: center;
+            padding: 5px;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 7px #999;
+            font-size: 30px;
+        }
+
+        .column {
+            float: left;
+            width: 50%;
+            text-align: center;
+        }
+
+        .inside {
+            text-align: left;
+            margin-left: 50px;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .space {
+            margin-left: 0px;
+        }
+
+        /* Customize the label (the container) */
+        .container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 20px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Hide the browser's default radio button */
+        .container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        img {
+            border: 5px solid #555;
+            width: 37%;
+        }
+
+        /* Create a custom radio button */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #eee;
+            border-radius: 50%;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .container:hover input~.checkmark {
+            background-color: #ccc;
+        }
+
+        /* When the radio button is checked, add a blue background */
+        .container input:checked~.checkmark {
+            background-color: #2196F3;
+            font-weight: bold;
+        }
+
+        #wrapper {
+            width: 960px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <br>
+        <button class="button" id="Record" onclick="Record()"> Record </button>
+        <button class="button" id="Finish" onclick="Finish()"> Finish </button>
+        <button class="button" id="StartData" onclick="StartData()"> Start data </button>
+        <button class="button" id="StopData" onclick="StopData()"> Stop data </button>
+        <button class="button" id="CPipeline" onclick="CPipeline()"> Create Pipeline </button>
+        <button class="button" id="SPipeline" onclick="SPipeline()"> Start Pipeline </button><br><br>
+
+    </div>
+    <div id="wrapper">
+        <div class="row">
+            <div class="column">
+                <h2><p style="border:3px; border-style:inset; padding: 1em;">Use modes</h2></p>
+                <div class="inside">
+                <label class="container">Idle
+                    <input type="radio" onClick="send('command/useMode', 'idle')" name="radio_mode">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Learn
+                    <input type="radio" onClick="send('command/useMode', 'learn')" name="radio_mode">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Predict
+                    <input type="radio" onClick="send('command/useMode', 'predict')" name="radio_mode">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            </div>
+            <div class="column">
+                <h2><p style="border:3px; border-style:inset; padding: 1em;">Source signal</h2></p>
+                <div class="inside">
+                <label class="container">EMG
+                    <input type="radio" onClick="sendEMG()" name="radio_signal">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">MMG
+                    <input type="radio" onClick="sendMMG()" name="radio_signal">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <h2><p style="border:3px; border-style:inset; padding: 1em;">Gestures</h2></p>
+                <button class="button" id="idle1" onclick="idle1()"> Idle </button>
+                <button class="button" id="fist" onclick="fist()"> Fist </button>
+                <button class="button" id="flexion" onclick="flexion()"> Flexion </button><br><br>
+                <button class="button" id="extension" onclick="extension()"> Extension </button>
+                <button class="button" id="pinch2" onclick="pinch2()"> Pinch index </button><br><br>
+                <button class="button" id="pinch3" onclick="pinch3()"> Pinch middle </button><br><br>
+                <button class="button" id="pinch4" onclick="pinch4()"> Pinch ring </button>
+                <button class="button" id="pinch5" onclick="pinch5()"> Pinch pinky </button>
+                
+            </div>
+            <div class="column">
+                <h2><p style="border:3px; border-style:inset; padding: 1em;">Image</h2></p>
+                <img id="image" src="Images/idle.png">
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
+        type="text/javascript"></script>
+    <script>
+        var client = new Paho.MQTT.Client("localhost", 8083, "BrowserClient");
+        client.onMessageArrived = onMessageArrived;
+
+        // connect the client
+        client.connect({ onSuccess: onConnect });
+
+        function onConnect() {
+            console.log("Connected");
+        }
+
+        // called when a message arrives
+        function onMessageArrived(message) {
+
+        }
+
+        function send(topic, payload) {
+            let message = new Paho.MQTT.Message(payload);
+            message.destinationName = topic;
+            client.send(message);
+        }
+
+
+        function sendMMG() {
+
+            let json = {
+                interface: "mmg"
+            }
+            let message = new Paho.MQTT.Message(JSON.stringify(json));
+            message.destinationName = "interfaces/use";
+            client.send(message);
+        }
+
+        function sendEMG() {
+
+            let json = {
+                interface: "emg"
+            }
+            let message = new Paho.MQTT.Message(JSON.stringify(json));
+            message.destinationName = "interfaces/use";
+            client.send(message);
+        }
+
+        function Record() {
+            document.getElementById("Record").style.backgroundColor = "green";
+            document.getElementById("Finish").style.backgroundColor = "";
+            send('command/record', '');
+        }
+
+        function Finish() {
+            document.getElementById("Finish").style.backgroundColor = "Orange";
+            document.getElementById("Record").style.backgroundColor = "";
+            send('command/finishLearn', '');
+        }
+        function StartData() {
+            document.getElementById("StartData").style.backgroundColor = "green";
+            document.getElementById("StopData").style.backgroundColor = "";
+            sendSensorStart();
+        }
+
+        function StopData() {
+            document.getElementById("StartData").style.backgroundColor = "";
+            document.getElementById("StopData").style.backgroundColor = "Orange";
+            sendSensorStop();
+        }
+
+        function CPipeline() {
+            document.getElementById("CPipeline").style.backgroundColor = "Purple";
+            cp();
+        }
+
+        function SPipeline() {
+            document.getElementById("SPipeline").style.backgroundColor = "Green";
+            start();
+        }
+
+        function idle1() {
+
+            document.getElementById("idle1").style.backgroundColor = "green";
+            document.getElementById("fist").style.backgroundColor = "";
+            document.getElementById("flexion").style.backgroundColor = "";
+            document.getElementById("extension").style.backgroundColor = "";
+            document.getElementById("pinch2").style.backgroundColor = "";
+            document.getElementById("pinch3").style.backgroundColor = "";
+            document.getElementById("pinch4").style.backgroundColor = "";
+            document.getElementById("pinch5").style.backgroundColor = "";
+
+            let image = document.getElementById("image");
+            image.src = "Images/idle.png";
+
+            send('command/gesture', 'idle')
+        }
+        function fist() {
+
+            document.getElementById("idle1").style.backgroundColor = "";
+            document.getElementById("fist").style.backgroundColor = "green";
+            document.getElementById("flexion").style.backgroundColor = "";
+            document.getElementById("extension").style.backgroundColor = "";
+            document.getElementById("pinch2").style.backgroundColor = "";
+            document.getElementById("pinch3").style.backgroundColor = "";
+            document.getElementById("pinch4").style.backgroundColor = "";
+            document.getElementById("pinch5").style.backgroundColor = "";
+
+            let image = document.getElementById("image");
+            image.src = "Images/fist.png";
+            send('command/gesture', 'fist')
+        }
+        function flexion() {
+
+            document.getElementById("idle1").style.backgroundColor = "";
+            document.getElementById("fist").style.backgroundColor = "";
+            document.getElementById("flexion").style.backgroundColor = "green";
+            document.getElementById("extension").style.backgroundColor = "";
+            document.getElementById("pinch2").style.backgroundColor = "";
+            document.getElementById("pinch3").style.backgroundColor = "";
+            document.getElementById("pinch4").style.backgroundColor = "";
+            document.getElementById("pinch5").style.backgroundColor = "";
+
+            let image = document.getElementById("image");
+            image.src = "Images/flexion.png";
+            send('command/gesture', 'flexion')
+        }
+        function extension() {
+
+            document.getElementById("idle1").style.backgroundColor = "";
+            document.getElementById("fist").style.backgroundColor = "";
+            document.getElementById("flexion").style.backgroundColor = "";
+            document.getElementById("extension").style.backgroundColor = "green";
+            document.getElementById("pinch2").style.backgroundColor = "";
+            document.getElementById("pinch3").style.backgroundColor = "";
+            document.getElementById("pinch4").style.backgroundColor = "";
+            document.getElementById("pinch5").style.backgroundColor = "";
+
+            let image = document.getElementById("image");
+            image.src = "Images/extension.png";
+            send('command/gesture', 'extension')
+        }
+        function pinch2() {
+
+            document.getElementById("idle1").style.backgroundColor = "";
+            document.getElementById("fist").style.backgroundColor = "";
+            document.getElementById("flexion").style.backgroundColor = "";
+            document.getElementById("extension").style.backgroundColor = "";
+            document.getElementById("pinch2").style.backgroundColor = "green";
+            document.getElementById("pinch3").style.backgroundColor = "";
+            document.getElementById("pinch4").style.backgroundColor = "";
+            document.getElementById("pinch5").style.backgroundColor = "";
+
+            let image = document.getElementById("image");
+            image.src = "Images/pinch1.png";
+            send('command/gesture', 'pinch_thumb-index')
+        }
+        function pinch3() {
+
+            document.getElementById("idle1").style.backgroundColor = "";
+            document.getElementById("fist").style.backgroundColor = "";
+            document.getElementById("flexion").style.backgroundColor = "";
+            document.getElementById("extension").style.backgroundColor = "";
+            document.getElementById("pinch2").style.backgroundColor = "";
+            document.getElementById("pinch3").style.backgroundColor = "green";
+            document.getElementById("pinch4").style.backgroundColor = "";
+            document.getElementById("pinch5").style.backgroundColor = "";
+
+            let image = document.getElementById("image");
+            image.src = "Images/pinch2.png";
+            send('command/gesture', 'pinch_thumb-middle')
+        }
+        function pinch4() {
+
+            document.getElementById("idle1").style.backgroundColor = "";
+            document.getElementById("fist").style.backgroundColor = "";
+            document.getElementById("flexion").style.backgroundColor = "";
+            document.getElementById("extension").style.backgroundColor = "";
+            document.getElementById("pinch2").style.backgroundColor = "";
+            document.getElementById("pinch3").style.backgroundColor = "";
+            document.getElementById("pinch4").style.backgroundColor = "green";
+            document.getElementById("pinch5").style.backgroundColor = "";
+
+            let image = document.getElementById("image");
+            image.src = "Images/pinch3.png";
+            send('command/gesture', 'pinch_thumb-ring')
+        }
+        function pinch5() {
+
+            document.getElementById("idle1").style.backgroundColor = "";
+            document.getElementById("fist").style.backgroundColor = "";
+            document.getElementById("flexion").style.backgroundColor = "";
+            document.getElementById("extension").style.backgroundColor = "";
+            document.getElementById("pinch2").style.backgroundColor = "";
+            document.getElementById("pinch3").style.backgroundColor = "";
+            document.getElementById("pinch4").style.backgroundColor = "";
+            document.getElementById("pinch5").style.backgroundColor = "green";
+
+            let image = document.getElementById("image");
+            image.src = "Images/pinch4.png";
+            send('command/gesture', 'pinch_thumb-small')
+        }
+
+        function cp() {
+
+
+            let message = new Paho.MQTT.Message("");
+            message.destinationName = "command/cp";
+            client.send(message);
+        }
+
+        function start() {
+
+
+            let message = new Paho.MQTT.Message("");
+            message.destinationName = "command/start";
+            client.send(message);
+        }
+        function sendSensorStart() {
+
+            let objJS = {
+                command: "start"
+            }
+
+            let message = new Paho.MQTT.Message(JSON.stringify(objJS));
+            message.destinationName = "command/controlSensor";
+            client.send(message);
+        }
+
+        function sendSensorStop() {
+
+            let objJS = {
+                command: "stop"
+            }
+
+            let message = new Paho.MQTT.Message(JSON.stringify(objJS));
+            message.destinationName = "command/controlSensor";
+            client.send(message);
+        }
+    </script>
+</body>
+
+</html>
