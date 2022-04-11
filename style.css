@@ -1,0 +1,123 @@
+@font-face {
+    font-family: "SQRS711L";
+    src: url(SQRS711L.tff);
+}
+
+body {
+    background-color: rgb(175, 175, 175);
+    /*font-family: "SQRS711L", sans-serif;*/
+    font-family: "arial", sans-serif;
+    color: black
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #c7c7c7;
+    border: none;
+    border-radius: 9px;
+    box-shadow: 0 5px #999;
+    margin-right: 4px;
+}
+
+.button:hover {
+    background-color: #6d996f
+}
+
+.button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.header {
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 5px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 7px #999;
+    font-size: 30px;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+
+.inside {
+    text-align: left;
+    margin-left: 120px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.space {
+    margin-left: 0px;
+}
+
+/* Customize the label (the container) */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+img {
+    border: 5px solid #555;
+    width: 37%;
+}
+
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked~.checkmark {
+    background-color: #2196F3;
+    font-weight: bold;
+}
+
+#wrapper {
+    width: 960px;
+    margin: auto;
+}
