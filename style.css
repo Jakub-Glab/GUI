@@ -1,8 +1,3 @@
-@font-face {
-    font-family: "SQRS711L";
-    src: url(SQRS711L.tff);
-}
-
 body {
     background-color: rgb(175, 175, 175);
     /*font-family: "SQRS711L", sans-serif;*/
@@ -93,7 +88,9 @@ body {
     margin-left: 0px;
 }
 
+
 /* Customize the label (the container) */
+
 .container {
     display: block;
     position: relative;
@@ -107,7 +104,9 @@ body {
     user-select: none;
 }
 
+
 /* Hide the browser's default radio button */
+
 .container input {
     position: absolute;
     opacity: 0;
@@ -121,7 +120,20 @@ img {
     width: 37%;
 }
 
+#myProgress {
+    width: 100%;
+    background-color: #ddd;
+}
+
+#myBar {
+    width: 1%;
+    height: 30px;
+    background-color: #04AA6D;
+}
+
+
 /* Create a custom radio button */
+
 .checkmark {
     position: absolute;
     top: 0;
@@ -132,12 +144,16 @@ img {
     border-radius: 50%;
 }
 
+
 /* On mouse-over, add a grey background color */
+
 .container:hover input~.checkmark {
     background-color: #ccc;
 }
 
+
 /* When the radio button is checked, add a blue background */
+
 .container input:checked~.checkmark {
     background-color: #2196F3;
     font-weight: bold;

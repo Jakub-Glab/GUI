@@ -20,39 +20,45 @@
     <div id="wrapper">
         <div class="row">
             <div class="column">
-                <h2><p style="border:3px; border-style:inset; padding: 1em;">Use modes</h2></p>
+                <h2>
+                    <p style="border:3px; border-style:inset; padding: 1em;">Use modes</h2>
+                </p>
                 <div class="inside">
-                <label class="container">Idle
+                    <label class="container">Idle
                     <input type="radio" onClick="send('command/useMode', 'idle')" name="radio_mode">
                     <span class="checkmark"></span>
                 </label>
-                <label class="container">Learn
+                    <label class="container">Learn
                     <input type="radio" onClick="send('command/useMode', 'learn')" name="radio_mode">
                     <span class="checkmark"></span>
                 </label>
-                <label class="container">Predict
+                    <label class="container">Predict
                     <input type="radio" onClick="send('command/useMode', 'predict')" name="radio_mode">
                     <span class="checkmark"></span>
                 </label>
-            </div>
+                </div>
             </div>
             <div class="column">
-                <h2><p style="border:3px; border-style:inset; padding: 1em;">Source signal</h2></p>
+                <h2>
+                    <p style="border:3px; border-style:inset; padding: 1em;">Source signal</h2>
+                </p>
                 <div class="inside">
-                <label class="container">EMG
+                    <label class="container">EMG
                     <input type="radio" onClick="sendEMG()" name="radio_signal">
                     <span class="checkmark"></span>
                 </label>
-                <label class="container">MMG
+                    <label class="container">MMG
                     <input type="radio" onClick="sendMMG()" name="radio_signal">
                     <span class="checkmark"></span>
                 </label>
-            </div>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="column">
-                <h2><p style="border:3px; border-style:inset; padding: 1em;">Gestures</h2></p>
+                <h2>
+                    <p style="border:3px; border-style:inset; padding: 1em;">Gestures</h2>
+                </p>
                 <button class="button" id="idle1" onclick="idle1()"> Idle </button>
                 <button class="button" id="fist" onclick="fist()"> Fist </button>
                 <button class="button" id="flexion" onclick="flexion()"> Flexion </button><br><br>
@@ -61,18 +67,18 @@
                 <button class="button" id="pinch3" onclick="pinch3()"> Pinch middle </button><br><br>
                 <button class="button" id="pinch4" onclick="pinch4()"> Pinch ring </button>
                 <button class="button" id="pinch5" onclick="pinch5()"> Pinch pinky </button>
-                
+
             </div>
             <div class="column">
-                <h2><p style="border:3px; border-style:inset; padding: 1em;">Image</h2></p>
+                <h2>
+                    <p style="border:3px; border-style:inset; padding: 1em;">Image</h2>
+                </p>
                 <img id="image" src="Images/idle.png">
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
-        type="text/javascript"></script>
-    <script src="scripts.js"
-        type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
+    <script src="scripts.js" type="text/javascript"></script>
 </body>
 
 </html>
