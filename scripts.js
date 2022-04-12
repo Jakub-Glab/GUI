@@ -231,3 +231,11 @@ var client = new Paho.MQTT.Client("localhost", 8083, "BrowserClient");
             message.destinationName = "command/controlSensor";
             client.send(message);
         }
+
+        function Auto() {
+            window.location.href = "auto.html";
+        }
+
+        function Manual() {
+            window.location.href = "gui.html";
+        }
