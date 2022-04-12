@@ -246,5 +246,5 @@ function Auto() {
 }
 
 function Manual() {
-    window.location.href = "gui.html";
+    window.location.href = "manual.html";
 }
