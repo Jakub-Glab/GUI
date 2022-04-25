@@ -21,6 +21,7 @@
                     <p style="border:3px; border-style:inset; padding: 1em;">Image</h2>
                 </p>
                 <img id="image" src="Images/idle.png"><br><br>
+                <p id='text'></p>
                 <div id="myProgress">
                     <div id="myBar"></div>
                 </div>
@@ -33,6 +34,7 @@
             </div>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
             <script src="scripts.js" type="text/javascript"></script>
+            <script src="scenario.json" type="text/javascript"></script>
 
             <script>
                 var imgArray = new Array();
@@ -56,30 +58,43 @@
                 var i = 0;
                 var img_index = 0
 
-                function StartAuto() {
-                    move()
+                var scenario = JSON.parse(scenario);
+
+                function delay(delayInms) {
+                    return new Promise(resolve => {
+                        setTimeout(() => {
+                            resolve(2);
+                        }, delayInms);
+                    });
                 }
 
-                function move() {
-                    if (i == 0) {
-                        i = 1;
-                        var elem = document.getElementById("myBar");
-                        var width = 0;
-                        var id = setInterval(frame, 50);
+                async function StartAuto() {
+                    for (var i = 0; i < 7; i++) {
+                        document.getElementById('image').src = imgArray[0].src;
+                        document.getElementById('text').innerHTML = "Prepare";
+                        await delay(1500)
+                        document.getElementById('image').src = imgArray[i + 1].src;
+                        document.getElementById('text').innerHTML = "Make a gesture";
+                        move(50)
+                        await delay(5000)
+                        document.getElementById('text').innerHTML = "Relax";
+                        document.getElementById('image').src = imgArray[0].src;
+                        move(50)
+                        await delay(5000)
+                    }
+                }
 
-                        function frame() {
-                            if (width >= 100) {
-                                clearInterval(id);
-                                i = 0;
-                                img_index = img_index + 1;
-                                if (img_index == 8) {
-                                    img_index = 0;
-                                }
-                                document.getElementById("image").src = imgArray[img_index].src;
-                            } else {
-                                width++;
-                                elem.style.width = width + '%';
-                            }
+                function move(interval) {
+                    var elem = document.getElementById("myBar");
+                    var width = 0;
+                    var id = setInterval(frame, interval);
+
+                    function frame() {
+                        if (width >= 100) {
+                            clearInterval(id);
+                        } else {
+                            width++;
+                            elem.style.width = width + '%';
                         }
                     }
                 }
