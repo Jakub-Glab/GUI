@@ -96,7 +96,7 @@
                     }
                 }
 
-                var imgArray = new Array();
+                let imgArray = new Array();
                 imgArray[0] = new Image();
                 imgArray[0].src = "Images/idle.png";
                 imgArray[1] = new Image();
@@ -125,16 +125,19 @@
                 async function StartAuto() {
                     for (let i = 0; i < myData.Steps.length; i++) {
                         document.getElementById('image').src = imgArray[0].src;
-                        document.getElementById('text').innerHTML = myData.Prepare.text
-                        await delay(myData.Prepare.duration * 1000);
+                        document.getElementById('text').innerHTML = myData.Prepare.text + " for next gesture: " + myData.Steps[i].step
+                            //prepare
+                        await delay(myData.Prepare.duration * 1000); //delay for 1.5 seconds
                         document.getElementById('image').src = imgArray[i + 1].src;
                         document.getElementById('text').innerHTML = myData.Steps[i].text;
                         move(myData.Steps[i].duration * 10)
-                        await delay(myData.Steps[i].duration * 1000);
+                            //send(gsture, i)
+                        await delay(myData.Steps[i].duration * 1000); //delay for 5 seconds
                         document.getElementById('text').innerHTML = myData.Idle.text;
                         document.getElementById('image').src = imgArray[0].src;
                         move(myData.Idle.duration * 10)
-                        await delay(myData.Idle.duration * 1000);
+                            //idle
+                        await delay(myData.Idle.duration * 1000); //delay for 5 seconds
                     }
                 }
 
