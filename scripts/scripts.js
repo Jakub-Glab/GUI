@@ -241,10 +241,17 @@ function sendSensorStop() {
     client.send(message);
 }
 
-function Auto() {
-    window.location.href = "auto.html";
-}
+var coll = document.getElementsByClassName("collapsible");
+var i;
 
-function Manual() {
-    window.location.href = "manual.html";
+for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+        }
+    });
 }
