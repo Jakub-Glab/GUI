@@ -73,12 +73,24 @@
                 <h2>
                     <p style="border:3px; border-style:inset; padding: 1em;">Image</h2>
                 </p>
-                <img id="image" src="Images/idle.png">
+                <img id="image" src="../img/idle.png">
             </div>
+        </div>
+        <div class="row">
+            <h2>
+                <p style="border:3px; border-style:inset; padding: 1em;">Load files</h2>
+            </p>
+            </h2>
+            <input type="file" id="file-input" />
+            <h3>Contents of the file:</h3>
+            <pre id="file-content"></pre>
+            <button class="button" id="SendFile" onclick="SendFile()"> Send File </button><br><br>
+
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
     <script src="scripts.js" type="text/javascript"></script>
+    <script src="fileSender.js" type="text/javascript"></script>
 
 </body>
 

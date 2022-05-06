@@ -33,7 +33,7 @@
                 </div>
             </div>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
-            <script src="scripts.js" type="text/javascript"></script>
+            <script src="../scripts_js/scripts.js" type="text/javascript"></script>
             <script>
                 let myData = {
                     "Steps": [{
@@ -70,7 +70,8 @@
                         "step": "pinky",
                         "duration": 5,
                         "text": "Make a gesture",
-                        "type": "task"
+                        "type": "task",
+
                     }],
 
                     "Start": {
@@ -98,21 +99,21 @@
 
                 let imgArray = new Array();
                 imgArray[0] = new Image();
-                imgArray[0].src = "Images/idle.png";
+                imgArray[0].src = "../img/idle.png";
                 imgArray[1] = new Image();
-                imgArray[1].src = "Images/fist.png";
+                imgArray[1].src = "../img/flexion.png";
                 imgArray[2] = new Image();
-                imgArray[2].src = "Images/flexion.png";
+                imgArray[2].src = "../img/extension.png";
                 imgArray[3] = new Image();
-                imgArray[3].src = "Images/extension.png";
+                imgArray[3].src = "../img/index.png";
                 imgArray[4] = new Image();
-                imgArray[4].src = "Images/pinch1.png";
+                imgArray[4].src = "../img/middle.png";
                 imgArray[5] = new Image();
-                imgArray[5].src = "Images/pinch2.png";
+                imgArray[5].src = "../img/ring.png";
                 imgArray[6] = new Image();
-                imgArray[6].src = "Images/pinch3.png";
+                imgArray[6].src = "../img/pinky.png";
                 imgArray[7] = new Image();
-                imgArray[7].src = "Images/pinch4.png";
+                imgArray[7].src = "../img/idle.png";
 
                 function delay(delayInms) {
                     return new Promise(resolve => {
@@ -131,7 +132,7 @@
                         document.getElementById('image').src = imgArray[i + 1].src;
                         document.getElementById('text').innerHTML = myData.Steps[i].text;
                         move(myData.Steps[i].duration * 10)
-                            //send(gsture, i)
+                        send('command/gesture', 'myData.Steps[i].step');
                         await delay(myData.Steps[i].duration * 1000); //delay for 5 seconds
                         document.getElementById('text').innerHTML = myData.Idle.text;
                         document.getElementById('image').src = imgArray[0].src;

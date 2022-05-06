@@ -43,7 +43,7 @@ function sendEMG() {
 function Record() {
     document.getElementById("Record").style.backgroundColor = "green";
     document.getElementById("Finish").style.backgroundColor = "";
-    send('command/record', '');
+    send('command/startRecording', '');
 }
 
 function Finish() {
@@ -86,7 +86,7 @@ function idle1() {
     document.getElementById("pinch5").style.backgroundColor = "";
 
     let image = document.getElementById("image");
-    image.src = "Images/idle.png";
+    image.src = "../img/idle.png";
 
     send('command/gesture', 'idle')
 }
@@ -103,7 +103,7 @@ function fist() {
     document.getElementById("pinch5").style.backgroundColor = "";
 
     let image = document.getElementById("image");
-    image.src = "Images/fist.png";
+    image.src = "../img/fist.png";
     send('command/gesture', 'fist')
 }
 
@@ -119,7 +119,7 @@ function flexion() {
     document.getElementById("pinch5").style.backgroundColor = "";
 
     let image = document.getElementById("image");
-    image.src = "Images/flexion.png";
+    image.src = "../img/flexion.png";
     send('command/gesture', 'flexion')
 }
 
@@ -135,7 +135,7 @@ function extension() {
     document.getElementById("pinch5").style.backgroundColor = "";
 
     let image = document.getElementById("image");
-    image.src = "Images/extension.png";
+    image.src = "../img/extension.png";
     send('command/gesture', 'extension')
 }
 
@@ -151,7 +151,7 @@ function pinch2() {
     document.getElementById("pinch5").style.backgroundColor = "";
 
     let image = document.getElementById("image");
-    image.src = "Images/pinch1.png";
+    image.src = "../img/pinch1.png";
     send('command/gesture', 'pinch_thumb-index')
 }
 
@@ -167,7 +167,7 @@ function pinch3() {
     document.getElementById("pinch5").style.backgroundColor = "";
 
     let image = document.getElementById("image");
-    image.src = "Images/pinch2.png";
+    image.src = "../img/pinch2.png";
     send('command/gesture', 'pinch_thumb-middle')
 }
 
@@ -183,7 +183,7 @@ function pinch4() {
     document.getElementById("pinch5").style.backgroundColor = "";
 
     let image = document.getElementById("image");
-    image.src = "Images/pinch3.png";
+    image.src = "../img/pinch3.png";
     send('command/gesture', 'pinch_thumb-ring')
 }
 
@@ -199,7 +199,7 @@ function pinch5() {
     document.getElementById("pinch5").style.backgroundColor = "green";
 
     let image = document.getElementById("image");
-    image.src = "Images/pinch4.png";
+    image.src = "../img/pinch4.png";
     send('command/gesture', 'pinch_thumb-small')
 }
 
