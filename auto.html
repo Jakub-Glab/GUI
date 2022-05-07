@@ -20,7 +20,7 @@
                 <h2>
                     <p style="border:3px; border-style:inset; padding: 1em;">Image</h2>
                 </p>
-                <img id="image" src="Images/idle.png"><br><br>
+                <img id="image" src="../img/idle.png"><br><br>
                 <p id='text'></p>
                 <div id="myProgress">
                     <div id="myBar"></div>
@@ -101,19 +101,19 @@
                 imgArray[0] = new Image();
                 imgArray[0].src = "../img/idle.png";
                 imgArray[1] = new Image();
-                imgArray[1].src = "../img/flexion.png";
+                imgArray[1].src = "../img/fist.png";
                 imgArray[2] = new Image();
-                imgArray[2].src = "../img/extension.png";
+                imgArray[2].src = "../img/flexion.png";
                 imgArray[3] = new Image();
-                imgArray[3].src = "../img/index.png";
+                imgArray[3].src = "../img/extension.png";
                 imgArray[4] = new Image();
-                imgArray[4].src = "../img/middle.png";
+                imgArray[4].src = "../img/pinch1.png";
                 imgArray[5] = new Image();
-                imgArray[5].src = "../img/ring.png";
+                imgArray[5].src = "../img/pinch2.png";
                 imgArray[6] = new Image();
-                imgArray[6].src = "../img/pinky.png";
+                imgArray[6].src = "../img/pinch3.png";
                 imgArray[7] = new Image();
-                imgArray[7].src = "../img/idle.png";
+                imgArray[7].src = "../img/pinch4.png";
 
                 function delay(delayInms) {
                     return new Promise(resolve => {
@@ -124,7 +124,8 @@
                 }
 
                 async function StartAuto() {
-                    for (let i = 0; i < myData.Steps.length; i++) {
+                    document.getElementById("StartAuto").disabled = true;
+                    for (let i = 0; i < 3; i++) {
                         document.getElementById('image').src = imgArray[0].src;
                         document.getElementById('text').innerHTML = myData.Prepare.text + " for next gesture: " + myData.Steps[i].step
                             //prepare
@@ -132,7 +133,6 @@
                         document.getElementById('image').src = imgArray[i + 1].src;
                         document.getElementById('text').innerHTML = myData.Steps[i].text;
                         move(myData.Steps[i].duration * 10)
-                        send('command/gesture', 'myData.Steps[i].step');
                         await delay(myData.Steps[i].duration * 1000); //delay for 5 seconds
                         document.getElementById('text').innerHTML = myData.Idle.text;
                         document.getElementById('image').src = imgArray[0].src;
@@ -140,6 +140,11 @@
                             //idle
                         await delay(myData.Idle.duration * 1000); //delay for 5 seconds
                     }
+                    resetButton();
+                }
+
+                function resetButton() {
+                    document.getElementById("StartAuto").disabled = false;
                 }
 
                 function move(interval) {

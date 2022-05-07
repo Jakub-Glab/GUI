@@ -57,6 +57,12 @@ body {
     transform: translateY(4px);
 }
 
+.bigbutton:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+    background-color: #3e8e41;
+}
+
 .header {
     background-color: #F1F1F1;
     text-align: center;
