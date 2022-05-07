@@ -1,0 +1,60 @@
+{
+    "Steps": [{
+        "step": "fist",
+        "duration": 5,
+        "text": "Make a gesture",
+        "type": "task"
+    }, {
+        "step": "flexion",
+        "duration": 5,
+        "text": "Make a gesture",
+        "type": "task"
+    }, {
+        "step": "extension",
+        "duration": 5,
+        "text": "Make a gesture",
+        "type": "task"
+    }, {
+        "step": "index",
+        "duration": 5,
+        "text": "Make a gesture",
+        "type": "task"
+    }, {
+        "step": "middle",
+        "duration": 5,
+        "text": "Make a gesture",
+        "type": "task"
+    }, {
+        "step": "ring",
+        "duration": 5,
+        "text": "Make a gesture",
+        "type": "task"
+    }, {
+        "step": "pinky",
+        "duration": 5,
+        "text": "Make a gesture",
+        "type": "task"
+    }],
+
+    "Start": {
+        "type": "command",
+        "payload": "start_recording"
+    },
+    "Stop": {
+        "type": "command",
+        "payload": "stop_recording"
+    },
+    "Idle": {
+        "step": "idle",
+        "duration": 5,
+        "text": "Relax",
+        "type": "task"
+    },
+
+    "Prepare": {
+        "step": "prepare",
+        "text": "Prepare",
+        "duration": 1.5,
+        "type": "task"
+    }
+}
